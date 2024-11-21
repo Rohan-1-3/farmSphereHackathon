@@ -4,6 +4,8 @@ const cookieSession = require("cookie-session");
 const bcrypt = require('bcryptjs');
 const User = require('./database/user');
 const Booking = require('./database/booking');
+const weatherRelatedTips = require("./gemini.js");
+
 require('dotenv').config();
 const dbConnect = require('./database/config');
 dbConnect();
@@ -110,8 +112,14 @@ app.get('/soil-testing', async (req, res) => {
 });
 
 // Test weather route
-app.get('/weather', async (req, res) => {
-  res.send("Weather connected successfully");
+app.get('/weather-alert', async (req, res) => {
+  try {
+    let geminiResponse = await weatherRelatedTips();
+    res.send(geminiResponse);
+  } catch (error) {
+    console.error("Error fetching weather-related tips:", error);
+    res.status(500).send({ error: "Internal server error" });
+  }
 });
 
 // set port, listen for requests
