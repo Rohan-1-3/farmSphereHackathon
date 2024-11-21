@@ -17,7 +17,7 @@ const LoginPage = () => {
     if (data.user) {
       sessionStorage.setItem("signedIn", true);
       sessionStorage.setItem("user", JSON.stringify(data.user))
-      if (sessionStorage.getItem("userType") === "Farmer") {
+      if (sessionStorage  .getItem("userType") === "Farmer") {
         navigate("/dashboard");
       } else {
         navigate("/marketplace");

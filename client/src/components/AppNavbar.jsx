@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDarkMode } from "../customHooks/DarkModeContext";
-import CallToActionButton from "./CallToActionButton";
 
 export default function LandingPageNavBar() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -18,39 +17,58 @@ export default function LandingPageNavBar() {
       <ul className="flex space-x-6">
         <li>
           <NavLink
-            to="/home"
+            to="/farming-tips"
             className={({ isActive }) =>
               isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
             }
           >
-            Home
+            Farming Tips
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="/about"
+            to="/weather-alert"
             className={({ isActive }) =>
               isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
             }
           >
-            About
+            Weather Alert
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="/contact"
+            to="/marketplace"
             className={({ isActive }) =>
               isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
             }
           >
-            Contact
+            Marketplace
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/soil-testing"
+            className={({ isActive }) =>
+              isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
+            }
+          >
+            Soil Testing
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/loan"
+            className={({ isActive }) =>
+              isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
+            }
+          >
+            Loan
           </NavLink>
         </li>
       </ul>
 
-      {/* Right Section: Get Started Button & Dark Mode Toggle */}
+      {/* Right Section: Dark Mode Toggle */}
       <div className="flex items-center space-x-4">
-        {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
           className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -58,9 +76,6 @@ export default function LandingPageNavBar() {
         >
           {isDarkMode ? "🌙" : "☀️"}
         </button>
-
-        {/* Get Started Button */}
-        <CallToActionButton />
       </div>
     </nav>
   );

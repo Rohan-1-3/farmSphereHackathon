@@ -1,25 +1,21 @@
 const express = require('express');
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-const User = require('./database/user');
 const bcrypt = require('bcryptjs');
-
+const User = require('./database/user');
+const Booking = require('./database/booking'); // Import the Booking model
 require('dotenv').config();
-// connecting to database
 const dbConnect = require('./database/config');
 dbConnect();
 
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:5173"
+  origin: "http://localhost:5173",
 };
 
 app.use(cors(corsOptions));
-
-// parse requests of content-type - application/json
 app.use(express.json());
-
 
 // simple route
 app.get("/", (req, res) => {
@@ -78,10 +74,45 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Booking creation endpoint
+app.post('/soil-testing', async (req, res) => {
+  try {
+    const { userId, phone, location, sessionDate } = req.body;
 
+    // Ensure the user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Create the booking
+    const booking = new Booking({ userId, phone, location, sessionDate });
+    await booking.save();
+    res.status(201).json({ message: "Booking created successfully", booking });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Fetch all bookings and populate user details
+app.get('/soil-testing', async (req, res) => {
+  try {
+    const bookings = await Booking.find()
+      .populate("userId", "name email") // Populate name and email from User
+      .exec();
+
+    res.json(bookings);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Test weather route
 app.get('/weather', async (req, res) => {
   res.send("Weather connected successfully");
-})
+});
 
 // set port, listen for requests
 const PORT = 5000;

@@ -7,6 +7,8 @@ import ErrorPage from "../components/ErrorPage";
 import SignupPage from "../components/Forms/SignupPage";
 import LoginPage from "../components/Forms/LoginPage";
 import IsFarmerPage from "../components/Forms/IsFarmerForm";
+import Weather from "../components/Weather/Weather";
+import SoilTest from "../components/SoilTest/SoilTest";
 
 const router = createBrowserRouter([
     {
@@ -41,7 +43,27 @@ const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <LoginPage />
-            }
+            },
+            // {
+            //     path: "/farming-tips",
+            //     element: <FarmingTips />,
+            // },
+              {
+                path: "/weather-alert",
+                element: <Weather />,
+              },
+            //   {
+            //     path: "/marketplace",
+            //     element: <Marketplace />,
+            //   },
+              {
+                path: "/soil-testing",
+                element: <SoilTest />,
+              },
+            //   {
+            //     path: "/loan",
+            //     element: <Loan />,
+            //   },
         ],
     },
 ]);
