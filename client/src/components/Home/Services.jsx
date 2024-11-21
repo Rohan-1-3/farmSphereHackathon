@@ -46,12 +46,18 @@ function Services(props) {
             "route": "/soil-testing",
             "image": ""
         }
-    ]    
+    ];    
 
     return (
-        <div className='service-container'>
-            {servicesData.map(service => <ServiceCard key={service.id} service={service}/>)}
-        </div>
+        <section className="bg-gray-100 dark:bg-gray-900 py-12">
+            <div className="max-w-screen-xl mx-auto px-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+                    {servicesData.map((service) => (
+                        <ServiceCard key={service.id} service={service} />
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }
 

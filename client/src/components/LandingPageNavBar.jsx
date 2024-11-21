@@ -72,7 +72,7 @@ export default function LandingPageNavBar({ toggleCart, cartLength, isCartOpen }
         {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+          className="p-2 rounded-full z-999 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           aria-label="Toggle Dark Mode"
         >
           {isDarkMode ? "🌙" : "☀️"}

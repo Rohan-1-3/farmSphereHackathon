@@ -10,7 +10,7 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen }) {
   const isFarmer = JSON.parse(sessionStorage.getItem("user")).isFarmer;
 
   return (
-    <nav className="flex sticky top-0 items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
+    <nav className="flex sticky z-50 top-0 items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <img src={Logo} alt="Logo" className="h-8 w-8" />
