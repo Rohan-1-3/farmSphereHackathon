@@ -1,6 +1,12 @@
 import React from 'react';
 import ServiceCard from './ServiceCard';
 import './Services.css';
+import image1 from "../../assets/logo.png"
+import image2 from "../../assets/M.webp"
+import image3 from "../../assets/g.jpg"
+import image4 from "../../assets/m.jpg"
+import image5 from "../../assets/l.webp"
+import image6 from "../../assets/s.jpg"
 
 function Services(props) {
     const servicesData = [
@@ -9,42 +15,42 @@ function Services(props) {
             "title": "Weather Alerts",
             "description": "Gives weather alerts to farmers to optimize farming",
             "route": "/weather",
-            "image": ""
+            "image": image1
         },
         {
             "id" : 2,
             "title": "Marketplace for Farmers and Customers",
             "description": "Connects farmers directly to customers, reducing middlemen and providing fair prices",
             "route": "/marketplace",
-            "image": ""
+            "image": image2
         },
         {
             "id" : 3,
             "title": "Real-Time Farming Tips and Government Schemes",
             "description": "Provides farming tips, government scheme updates, and tax updates in real-time",
             "route": "/farming-tips",
-            "image": ""
+            "image": image3
         },
         {
             "id" : 4,
             "title": "Minimizing Middlemen",
             "description": "Facilitates direct transactions between farmers and buyers, improving transparency",
             "route": "/direct-transactions",
-            "image": ""
+            "image": image4
         },
         {
             "id" : 5,
             "title": "Easy Loan Access for Farmers",
             "description": "Offers easy access to farming loans with minimal paperwork and quick approvals",
             "route": "/easy-loans",
-            "image": ""
+            "image": image5
         },
         {
             "id" : 6,
             "title": "Soil Testing",
             "description": "Enables farmers to test soil quality for better crop yield and sustainable farming",
             "route": "/soil-testing",
-            "image": ""
+            "image": image6
         }
     ];    
 
