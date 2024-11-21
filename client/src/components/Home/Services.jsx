@@ -1,22 +1,13 @@
-import React from 'react';
 import ServiceCard from './ServiceCard';
 import './Services.css';
-import image1 from "../../assets/logo.png"
 import image2 from "../../assets/M.webp"
 import image3 from "../../assets/g.jpg"
 import image4 from "../../assets/m.jpg"
 import image5 from "../../assets/l.webp"
 import image6 from "../../assets/s.jpg"
 
-function Services(props) {
+function Services() {
     const servicesData = [
-        {   
-            "id" : 1,
-            "title": "Weather Alerts",
-            "description": "Gives weather alerts to farmers to optimize farming",
-            "route": "/weather",
-            "image": image1
-        },
         {
             "id" : 2,
             "title": "Marketplace for Farmers and Customers",
@@ -28,7 +19,7 @@ function Services(props) {
             "id" : 3,
             "title": "Real-Time Farming Tips and Government Schemes",
             "description": "Provides farming tips, government scheme updates, and tax updates in real-time",
-            "route": "/farming-tips",
+            "route": "/weather-alert",
             "image": image3
         },
         {
@@ -42,7 +33,7 @@ function Services(props) {
             "id" : 5,
             "title": "Easy Loan Access for Farmers",
             "description": "Offers easy access to farming loans with minimal paperwork and quick approvals",
-            "route": "/easy-loans",
+            "route": "/loan",
             "image": image5
         },
         {

@@ -18,7 +18,7 @@ const LoginPage = () => {
       sessionStorage.setItem("signedIn", true);
       sessionStorage.setItem("user", JSON.stringify(data.user))
       if (sessionStorage.getItem("userType") === "Farmer") {
-        navigate("/dashboard");
+        navigate("/marketplace");
       } else {
         navigate("/marketplace");
       }
@@ -28,10 +28,10 @@ const LoginPage = () => {
   };
 
   useEffect(()=>{
-    if(sessionStorage.getItem("signedIn") === true){
+    if(sessionStorage.getItem("signedIn")){
       const user = JSON.parse(sessionStorage.getItem("user"));
-      if(user.isFarmer){
-        navigate("/dashboard")
+      if(user){
+        navigate("/marketplace")
       }else{
         navigate("/marketplace")
       }
@@ -39,12 +39,15 @@ const LoginPage = () => {
   },[])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center mb-4 text-gray-700">Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md w-96">
+        <h2 className="text-2xl font-bold text-center mb-4 text-gray-700 dark:text-gray-200">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-600 text-sm font-semibold mb-2" htmlFor="email">
+            <label
+              className="block text-gray-600 dark:text-gray-300 text-sm font-semibold mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -52,33 +55,36 @@ const LoginPage = () => {
               id="email"
               placeholder="Enter your email"
               value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full text-black px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full text-black dark:text-gray-100 dark:bg-black px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-600 text-sm font-semibold mb-2" htmlFor="password">
+            <label
+              className="block text-gray-600 dark:text-gray-300 text-sm font-semibold mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
-              type="text"
+              type="password"
               id="password"
               placeholder="Enter your password"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full text-black px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full text-black dark:text-gray-100 px-4 py-2 border border-gray-300 dark:bg-black dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200"
+            className="w-full bg-blue-500 dark:bg-blue-600 text-white py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition duration-200"
           >
             Login
           </button>
         </form>
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4">
           Don't have an account?{" "}
           <NavLink to="/signup" className="text-blue-500 hover:underline">
             Sign Up
@@ -86,6 +92,7 @@ const LoginPage = () => {
         </p>
       </div>
     </div>
+
   );
 };
 

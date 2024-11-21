@@ -10,10 +10,12 @@ export default function LandingPageNavBar({ toggleCart, cartLength, isCartOpen }
   return (
     <nav className="flex sticky top-0 items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
       {/* Logo */}
-      <div className="flex items-center space-x-2">
-        <img src={Logo} alt="Logo" className="h-8 w-8" />
-        <span className="font-bold text-xl">Farm Sphere</span>
-      </div>
+      <NavLink to="/">
+        <div className="flex items-center space-x-2">
+          <img src={Logo} alt="Logo" className="h-8 w-8" />
+          <span className="font-bold text-xl">Farm Sphere</span>
+        </div>
+      </NavLink>
 
       {/* Navigation Links */}
       <ul className="flex space-x-6">

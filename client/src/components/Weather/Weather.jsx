@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [aiData, setAiData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!sessionStorage.getItem("signedIn")){
+      navigate("/user")
+    }
+  },[])
 
   useEffect(() => {
     const fetchWeatherAndAiData = async () => {
@@ -47,7 +55,6 @@ const Weather = () => {
     fetchWeatherAndAiData();
   }, []);
   
-   // Empty dependency array ensures it runs once on mount
 
   // Loading state
   if (loading) {

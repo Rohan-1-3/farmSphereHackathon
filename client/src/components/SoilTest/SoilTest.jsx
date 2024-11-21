@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SoilTest = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,14 @@ const SoilTest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(!sessionStorage.getItem("signedIn")){
+      navigate("/user")
+    }
+  },[])
 
   // Automatically fill name and email from localStorage
   useEffect(() => {
@@ -40,7 +49,6 @@ const SoilTest = () => {
     setError(null);
     setSuccess(false);
 
-    console.log(formData)
     try {
       const response = await fetch("http://localhost:5000/soil-testing", {
         method: "POST",
@@ -71,30 +79,30 @@ const SoilTest = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-center mb-4 text-gray-800">
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:shadow-gray-700">
+      <h1 className="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-white">
         Soil Sampling and Analysis
       </h1>
-      <p className="text-gray-600 text-center mb-6">
+      <p className="text-gray-600 text-center mb-6 dark:text-gray-300">
         We analyze soil samples to determine the best crops, vegetables, fruits,
         and pH range for your land. Book a session today to get an online report
         on your soil's farming potential.
       </p>
-      
+  
       {/* Success message */}
       {success && (
-        <div className="mb-4 text-green-600 text-center">
+        <div className="mb-4 text-green-600 text-center dark:text-green-400">
           Your session has been booked successfully!
         </div>
       )}
-      
+  
       {/* Error message */}
       {error && (
-        <div className="mb-4 text-red-600 text-center">
+        <div className="mb-4 text-red-600 text-center dark:text-red-400">
           {error}
         </div>
       )}
-      
+  
       <form
         className="space-y-4"
         onSubmit={handleSubmit}
@@ -102,7 +110,7 @@ const SoilTest = () => {
         <div>
           <label
             htmlFor="phone"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
             Phone
           </label>
@@ -113,13 +121,13 @@ const SoilTest = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           />
         </div>
-        <div className="text-black">
+        <div>
           <label
             htmlFor="location"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
             Location
           </label>
@@ -130,13 +138,13 @@ const SoilTest = () => {
             value={formData.location}
             onChange={handleChange}
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           />
         </div>
-        <div className="text-black">
+        <div>
           <label
             htmlFor="sessionDate"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
             Preferred Session Date
           </label>
@@ -147,12 +155,12 @@ const SoilTest = () => {
             value={formData.sessionDate}
             onChange={handleChange}
             required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition"
+          className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition disabled:bg-green-400 dark:bg-green-700 dark:hover:bg-green-600 dark:disabled:bg-green-500"
           disabled={loading}
         >
           {loading ? "Booking..." : "Book Session"}
@@ -160,6 +168,7 @@ const SoilTest = () => {
       </form>
     </div>
   );
+  
 };
 
 export default SoilTest;

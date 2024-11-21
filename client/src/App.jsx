@@ -2,10 +2,11 @@ import { Outlet } from "react-router-dom";
 import LandingPageNavBar from "./components/LandingPageNavBar";
 import AppNavbar from "./components/AppNavbar";
 import { useUserData } from "./customHooks/useUserData";
+import Footer from "./components/Home/Footer";
 
 export default function App() {
   const userData = useUserData();
-  const isSignedIn = sessionStorage.getItem("signedIn") === "true";
+  const isSignedIn = sessionStorage.getItem("signedIn");
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
@@ -21,6 +22,7 @@ export default function App() {
         />{" "}
         {/* This is where child routes will render */}
       </main>
+      <Footer />
     </div>
   );
 }

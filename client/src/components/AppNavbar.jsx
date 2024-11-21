@@ -24,12 +24,12 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen }) {
           <>
             <li>
               <NavLink
-                to="/farming-tips"
+                to="/farming-news"
                 className={({ isActive }) =>
                   isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
                 }
               >
-                Farming Tips
+                Farming News
               </NavLink>
             </li>
             <li>

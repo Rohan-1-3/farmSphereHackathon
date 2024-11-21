@@ -12,7 +12,7 @@ const Reviews = memo(function Reviews() {
           userData.map(user => (
             <div
               key={user.firstName}
-              className="bg-black text-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white text-black p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow dark:bg-black dark:text-white"
             >
               <img
                 src={user.image}

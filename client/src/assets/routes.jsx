@@ -10,6 +10,8 @@ import IsFarmerPage from "../components/Forms/IsFarmerForm";
 import Weather from "../components/Weather/Weather";
 import SoilTest from "../components/SoilTest/SoilTest";
 import Marketplace from "../components/Marketplace/Marketplace";
+import LoanApplicationForm from "../components/Loan/Loan";
+import FarmingNews from "../components/FarmingNews/FarmingNews";
 
 const router = createBrowserRouter([
     {
@@ -45,10 +47,10 @@ const router = createBrowserRouter([
                 path: "/login",
                 element: <LoginPage />
             },
-            // {
-            //     path: "/farming-tips",
-            //     element: <FarmingTips />,
-            // },
+            {
+                path: "/farming-news",
+                element: <FarmingNews />,
+            },
               {
                 path: "/weather-alert",
                 element: <Weather />,
@@ -61,10 +63,10 @@ const router = createBrowserRouter([
                 path: "/soil-testing",
                 element: <SoilTest />,
               },
-            //   {
-            //     path: "/loan",
-            //     element: <Loan />,
-            //   },
+              {
+                path: "/loan",
+                element: <LoanApplicationForm />,
+              },
         ],
     },
 ]);

@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Reviews from './Reviews';
 import Services from './Services';
 import CallToActionButton from '../CallToActionButton';
 import Footer from './Footer';
 import Hero from './Hero';
 import './home.css';
+import { useNavigate } from 'react-router-dom';
 
 function Home(props) {
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(sessionStorage.getItem("signedIn")){
+            navigate("/login")
+        }
+    },[])
+
     return (
         <div className='main'>
             <Hero className="hero" />
@@ -20,7 +29,6 @@ function Home(props) {
                 </p>
                 <CallToActionButton size='large' text='Join Us Today!' />
             </div>
-            <Footer />
         </div>
     );
 }
