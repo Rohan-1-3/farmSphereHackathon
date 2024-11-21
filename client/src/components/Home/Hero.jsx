@@ -16,16 +16,6 @@ function Hero(props) {
                 </p>
                 <div className="flex items-center gap-4">
                     <CallToActionButton />
-                    <NavLink
-                        to="/contact"
-                        className={({ isActive }) =>
-                            isActive
-                                ? "text-blue-500 font-semibold"
-                                : "hover:text-blue-500 font-medium text-gray-600"
-                        }
-                    >
-                        Contact Us
-                    </NavLink>
                 </div>
             </div>
             <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">

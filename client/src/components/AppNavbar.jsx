@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDarkMode } from "../customHooks/DarkModeContext";
+import Logo from "../assets/logo.png"
 
 export default function AppNavbar({ toggleCart, cartLength, isCartOpen }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -12,7 +13,7 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen }) {
     <nav className="flex sticky top-0 items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
       {/* Logo */}
       <div className="flex items-center space-x-2">
-        <img src="/logo.png" alt="Logo" className="h-8 w-8" />
+        <img src={Logo} alt="Logo" className="h-8 w-8" />
         <span className="font-bold text-xl">Farm Sphere</span>
       </div>
 
