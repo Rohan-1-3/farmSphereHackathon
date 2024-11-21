@@ -5,12 +5,14 @@ import { useUserData } from "./customHooks/useUserData";
 
 export default function App() {
   const userData = useUserData();
-  const isSignedIn = sessionStorage.getItem("signedIn") === "true"; // Check if user is signed in
+  const isSignedIn = sessionStorage.getItem("signedIn") === "true";
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
       {/* Conditionally render the navbar */}
-      {isSignedIn ? <AppNavbar /> : <LandingPageNavBar />}
+      {isSignedIn ? 
+        <AppNavbar  /> : 
+        <LandingPageNavBar />}
       <main>
         <Outlet
           context={{

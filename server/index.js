@@ -3,7 +3,7 @@ const cors = require("cors");
 const cookieSession = require("cookie-session");
 const bcrypt = require('bcryptjs');
 const User = require('./database/user');
-const Booking = require('./database/booking'); // Import the Booking model
+const Booking = require('./database/booking');
 require('dotenv').config();
 const dbConnect = require('./database/config');
 dbConnect();
