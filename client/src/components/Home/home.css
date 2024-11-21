@@ -1,0 +1,18 @@
+div{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero {
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+}
+
+.services {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}  
+
