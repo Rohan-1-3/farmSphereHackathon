@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { useOutletContext } from "react-router-dom";
-import './review.css'; // Assuming you're using this CSS file
+import './review.css'; 
 
 const Reviews = memo(function Reviews() {
   const userData = useOutletContext().userData;

@@ -11,7 +11,7 @@
     }
 
     .review-item {
-    background-color: #fff;
+    background-color: #000000;
     padding: 1rem;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -30,7 +30,6 @@
     margin-bottom: 1.5rem;
     }
 
-  /* Optional: styling for the images inside reviews */
 .review-item img {
     max-width: 100%;
     object-fit: cover;
