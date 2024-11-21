@@ -1,5 +1,6 @@
 import React from 'react';
 import ServiceCard from './ServiceCard';
+import './Services.css';
 
 function Services(props) {
     const servicesData = [

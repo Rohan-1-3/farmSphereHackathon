@@ -1,0 +1,10 @@
+/* Services.css */
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    padding: 5px;
+    justify-items: center;
+    align-items: start;
+    background-color: #f9f9f9;
+}
