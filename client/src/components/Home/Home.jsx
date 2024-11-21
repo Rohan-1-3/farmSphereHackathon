@@ -8,17 +8,6 @@ import axios from 'axios';
 
 function Home(props) {
 
-    useEffect(() => {
-        // Fetch data from the backend
-        axios.get('http://localhost:5000/home')
-          .then(response => {
-            console.log(response.data);  // Save backend response
-          })
-          .catch(error => {
-            console.error('There was an error fetching data!', error);
-          });
-      }, []);
-
     return (
         <div>
             <Hero />

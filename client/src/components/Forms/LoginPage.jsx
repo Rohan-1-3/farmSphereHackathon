@@ -1,12 +1,48 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    if (data.user) {
+      sessionStorage.setItem("signedIn", true);
+      sessionStorage.setItem("user", JSON.stringify(data.user))
+      if (sessionStorage.getItem("userType") === "Farmer") {
+        navigate("/dashboard");
+      } else {
+        navigate("/marketplace");
+      }
+    } else {
+      alert(data.error);
+    }
+  };
+
+  useEffect(()=>{
+    if(sessionStorage.getItem("signedIn") === true){
+      const user = JSON.parse(sessionStorage.getItem("user"));
+      if(user.isFarmer){
+        navigate("/dashboard")
+      }else{
+        navigate("/marketplace")
+      }
+    }
+  },[])
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold text-center mb-4 text-gray-700">Login</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-600 text-sm font-semibold mb-2" htmlFor="email">
               Email
@@ -15,7 +51,10 @@ const LoginPage = () => {
               type="email"
               id="email"
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
+              required
+              className="w-full text-black px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <div className="mb-4">
@@ -23,10 +62,13 @@ const LoginPage = () => {
               Password
             </label>
             <input
-              type="password"
+              type="text"
               id="password"
               placeholder="Enter your password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
+              required
+              className="w-full text-black px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
           <button

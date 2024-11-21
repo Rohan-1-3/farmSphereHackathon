@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const IsFarmerPage = () => {
-  const [userType, setUserType] = useState(null); // State to track selection
+  const [userType, setUserType] = useState(null);
   const navigate = useNavigate();
 
   const handleSelection = (type) => {
@@ -11,10 +11,10 @@ const IsFarmerPage = () => {
 
   const handleContinue = () => {
     if (userType) {
-      localStorage.setItem("userType", userType); // Store the selection in localStorage
-      navigate("/signup"); // Navigate to the signup page
+      sessionStorage.setItem("userType", userType); 
+      navigate("/signup"); 
     } else {
-      alert("Please select an option before continuing!"); // Alert if no option selected
+      alert("Please select an option before continuing!");
     }
   };
 
