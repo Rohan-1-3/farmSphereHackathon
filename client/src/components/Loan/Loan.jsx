@@ -1,9 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 const LoanApplicationForm = () => {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        alert("Form Submitted. We will approve and notify you soon.")
+        navigate("/loan")
+    }
+
   return (
     <div className="max-w-lg mx-auto p-6 bg-white dark:bg-gray-800 dark:text-white shadow-md rounded-lg">
       <h1 className="text-2xl font-semibold text-center mb-4">Loan Application Form</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="space-y-4">
           {/* KYC Information */}
           <div>
