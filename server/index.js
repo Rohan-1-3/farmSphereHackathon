@@ -6,7 +6,8 @@ const User = require('./database/user');
 const Booking = require('./database/booking');
 const Order = require("./database/order.js")
 const weatherRelatedTips = require("./gemini.js");
-const Product = require("./database/product.js")
+const Product = require("./database/product.js");
+const FarmerGoods = require("./database/farmerGoods.js")
 
 require('dotenv').config();
 const dbConnect = require('./database/config');
@@ -185,11 +186,33 @@ app.post("/marketplace", async (req, res) => {
 });
 
 
-app.post("/farmermarketplace", async (req, res) => {
-  let data = new FarmerGoods(req.body);
-  let response = await data.save();
-  res.send(response);
+app.get("/api/farmergoods", async(req, res) => {
+  try{
+    const goods = await FarmerGoods.find();
+    res.json(goods);
+  }catch(err){
+    console.error(err);
+    res.status(500).send('Error fetching goods');
+  }
 })
+
+app.post("/farmermarketplace", async (req, res) => {
+  try {
+    const { userId, product, quantity, price } = req.body;
+
+    // Create a new good
+    const newGood = new FarmerGoods({ userId, product, quantity, price });
+    
+    // Save it to the database
+    const savedGood = await newGood.save();
+    
+    // Send a response back with the saved good
+    res.status(201).json(savedGood);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error saving good' });
+  }
+});
 
 // set port, listen for requests
 const PORT = 5000;
