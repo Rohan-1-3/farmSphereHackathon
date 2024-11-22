@@ -113,12 +113,18 @@ app.get('/soil-testing', async (req, res) => {
 
 // Test weather route
 app.get('/weather-alert', async (req, res) => {
+  const { index } = req.query; // Get index from query string
   try {
-    let geminiResponse = await weatherRelatedTips();
-    res.send(geminiResponse);
+    const dayIndex = parseInt(index, 10); // Convert to integer
+    if (isNaN(dayIndex) || dayIndex < 0) {
+      return res.status(400).send("Invalid index. Please provide a valid number.");
+    }
+
+    const geminiResponse = await weatherRelatedTips(dayIndex);
+    res.send(geminiResponse); // Send weather and AI suggestions
   } catch (error) {
-    console.error("Error fetching weather-related tips:", error);
-    res.status(500).send({ error: "Internal server error" });
+    console.error("Error fetching weather and suggestions:", error);
+    res.status(500).send("Server error. Please try again later.");
   }
 });
 

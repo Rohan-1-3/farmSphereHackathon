@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useOutletContext } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const setIsSignedIn = useOutletContext().setIsSignedIn;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const LoginPage = () => {
     if (data.user) {
       sessionStorage.setItem("signedIn", true);
       sessionStorage.setItem("user", JSON.stringify(data.user))
+      setIsSignedIn(true)
       if (sessionStorage.getItem("userType") === "Farmer") {
         navigate("/marketplace");
       } else {

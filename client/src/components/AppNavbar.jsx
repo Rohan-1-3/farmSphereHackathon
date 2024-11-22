@@ -1,13 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDarkMode } from "../customHooks/DarkModeContext";
 import Logo from "../assets/logo.png"
 
-export default function AppNavbar({ toggleCart, cartLength, isCartOpen }) {
+export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSignedIn }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   // Retrieve user type from sessionStorage
   const isFarmer = JSON.parse(sessionStorage.getItem("user")).isFarmer;
+  const navigate = useNavigate();
 
   return (
     <nav className="flex sticky z-50 top-0 items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
@@ -108,6 +109,17 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen }) {
           aria-label="Toggle Dark Mode"
         >
           {isDarkMode ? "🌙" : "☀️"}
+        </button>
+        <button
+          onClick={()=>{
+            sessionStorage.clear()
+            setIsSignedIn(false)
+            navigate("/")
+          }}
+          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+          aria-label="Toggle Dark Mode"
+        >
+          =>
         </button>
       </div>
     </nav>
