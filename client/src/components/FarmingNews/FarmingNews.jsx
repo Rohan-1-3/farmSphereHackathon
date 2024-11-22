@@ -1,26 +1,44 @@
+import pic1 from '../../assets/m.jpg';
+import pic2 from '../../assets/M.webp';
+
+import pic3 from '../../assets/premium_photo-1661962692059-55d5a4319814.avif';
+
+import pic4 from '../../assets/s.jpg';
+
+import pic5 from '../../assets/smart-series-img.jpg';
+
+import pic6 from '../../assets/g.jpg';
+
+import pic7 from '../../assets/hero-image.jpg';
+
+
+
+
+
+
 const governmentTaxesData = [
     {
       title: "New Tax Policy for Farmers",
       description: "The government has introduced new tax policies to support small-scale farmers.",
-      imageUrl: "https://example.com/tax-policy.jpg",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1678374802947-ad2d80cff2e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHRheGVzfGVufDB8fDB8fHww",
       link: "https://example.com/tax-policy"
     },
     {
       title: "Tax Exemption for Organic Farms",
       description: "Organic farms will now be exempt from certain taxes to encourage sustainable farming.",
-      imageUrl: "https://example.com/organic-tax-exemption.jpg",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1678751640165-38e3ff1999c6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8b3JnYW5pYyUyMGZhcm1pbmd8ZW58MHx8MHx8fDA%3D",
       link: "https://example.com/organic-tax-exemption"
     },
     {
       title: "Tax Incentives for Small Scale Farmers",
       description: "Small-scale farmers will receive tax incentives to help with the financial challenges posed by climate change.",
-      imageUrl: "https://example.com/small-farmers-incentives.jpg",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1661420226112-311050ce30da?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmFybWVyfGVufDB8fDB8fHww",
       link: "https://example.com/small-farmers-incentives"
     },
     {
       title: "Government Increases Tax on Pesticides",
       description: "A new tax has been introduced on pesticides to promote organic farming and reduce environmental harm.",
-      imageUrl: "https://example.com/pesticide-tax.jpg",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1661311870919-415927d391df?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGF4JTIwcmF0ZXxlbnwwfHwwfHx8MA%3D%3Dhttps://www.fraserinstitute.org/sites/default/files/marginal-effective-tax-rates-infographic.jpg",
       link: "https://example.com/pesticide-tax"
     },
     {
@@ -68,31 +86,31 @@ const governmentTaxesData = [
     {
       title: "Tomato Market Prices Rise",
       description: "The price of tomatoes has increased due to lower production rates this season.",
-      imageUrl: "https://example.com/tomato-price.jpg",
+      imageUrl: pic5,
       link: "https://example.com/tomato-price"
     },
     {
       title: "Potato Prices Stabilize",
       description: "Potato prices have stabilized after fluctuating over the past few months.",
-      imageUrl: "https://example.com/potato-price.jpg",
+      imageUrl: pic4,
       link: "https://example.com/potato-price"
     },
     {
       title: "Onion Prices Surge Amid Shortages",
       description: "Onion prices have surged as a result of unexpected weather conditions affecting harvests.",
-      imageUrl: "https://example.com/onion-price.jpg",
+      imageUrl: pic3,
       link: "https://example.com/onion-price"
     },
     {
       title: "Cucumber Prices Fall Due to High Supply",
       description: "Cucumber prices have dropped this season as production levels have significantly increased.",
-      imageUrl: "https://example.com/cucumber-price.jpg",
+      imageUrl: pic2,
       link: "https://example.com/cucumber-price"
     },
     {
       title: "Carrot Prices Up as Demand Increases",
       description: "The demand for carrots has risen, leading to an increase in market prices this month.",
-      imageUrl: "https://example.com/carrot-price.jpg",
+      imageUrl: pic1,
       link: "https://example.com/carrot-price"
     }
   ];  
