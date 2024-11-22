@@ -1,9 +1,8 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDarkMode } from "../customHooks/DarkModeContext";
 import Logo from "../assets/logo.png"
 
-export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSignedIn }) {
+export default function AppNavbar({ setIsSignedIn }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   // Retrieve user type from sessionStorage
@@ -12,7 +11,6 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
 
   return (
     <nav className="flex sticky z-50 top-0 items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 text-black dark:text-white shadow-md">
-      {/* Logo */}
       <NavLink to="/">
         <div className="flex items-center space-x-2">
           <img src={Logo} alt="Logo" className="h-8 w-8" />
@@ -20,9 +18,7 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
         </div>
       </NavLink>
 
-      {/* Navigation Links */}
       <ul className="flex space-x-6">
-        {/* Show all links only if the user is a Farmer */}
         {isFarmer ? (
           <>
             <li>
@@ -47,7 +43,7 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
             </li>
             <li>
               <NavLink
-                to="/marketplace"
+                to={`${isFarmer ? "/farmermarketplace" : "/marketplace"}`}
                 className={({ isActive }) =>
                   isActive ? "text-blue-500 font-semibold" : "hover:text-blue-500"
                 }
@@ -82,27 +78,7 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
         )}
       </ul>
 
-      {/* Right Section: Cart and Dark Mode Toggle */}
       <div className="flex items-center space-x-4">
-        {/* Cart Button */}
-        <button
-          onClick={toggleCart}
-          className={`relative p-2 bg-transparent rounded-full ${
-            isCartOpen
-              ? "bg-blue-100  dark:bg-blue-800"
-              : "bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
-          }`}
-          aria-label="Toggle Cart"
-        >
-          🛒
-          {cartLength > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-              {cartLength}
-            </span>
-          )}
-        </button>
-
-        {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
           className="p-2 rounded-full bg-transparent dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"

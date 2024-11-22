@@ -150,6 +150,7 @@ const Marketplace = () => {
             </p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {console.log(goods)}
               {goods.map((good) => (
                 <div
                   key={good.id}
@@ -157,7 +158,7 @@ const Marketplace = () => {
                 >
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-xl font-bold text-blue-700 dark:text-blue-300">
-                      {good.name}
+                      {good.product}
                     </h3>
                   </div>
                   <div className="mb-4">

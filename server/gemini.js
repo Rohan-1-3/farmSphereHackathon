@@ -16,7 +16,6 @@ const aiResponse = async (index) => {
     Avg Humidity: ${response[index].avgHumidity}%,
     Condition: ${response[index].weatherCondition},`;
 
-    // Construct the prompt
     const prompt = `${weatherDataString}. Give suggestions to farmers in 100 words based on the above data and also show the data on top. Don't bold the weatherDataString`;
 
     const result = await model.generateContent(prompt);

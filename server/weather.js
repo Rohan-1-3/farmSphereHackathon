@@ -38,10 +38,10 @@ const forecast = async () => {
       }
 
       // Push values for each day
-      dailyForecast[date].temperatures.push(item.main.temp - 273.15); // Convert temp from Kelvin to Celsius
+      dailyForecast[date].temperatures.push(item.main.temp - 273.15);
       dailyForecast[date].weather.push(item.weather[0].description);
       dailyForecast[date].humidity.push(item.main.humidity);
-      dailyForecast[date].rainProbability.push(item.pop || 0); // Probability of rain (default to 0 if not available)
+      dailyForecast[date].rainProbability.push(item.pop || 0);
     });
 
     // Process daily forecast and add to forecastArray

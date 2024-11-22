@@ -16,10 +16,11 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const isFarmer = sessionStorage.getItem("userType") === "Farmer";
     const response = await fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password,  isFarmer}),
     });
     const data = await response.json();
     console.log(data)

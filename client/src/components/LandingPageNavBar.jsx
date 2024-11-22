@@ -51,27 +51,7 @@ export default function LandingPageNavBar({ toggleCart, cartLength, isCartOpen }
         </li>
       </ul>
 
-      {/* Right Section: Cart, Get Started Button, & Dark Mode Toggle */}
       <div className="flex items-center space-x-4">
-        {/* Cart Button */}
-        <button
-          onClick={toggleCart}
-          className={`relative p-2 rounded-full ${
-            isCartOpen
-              ? "bg-blue-100 dark:bg-blue-800"
-              : "bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
-          }`}
-          aria-label="Toggle Cart"
-        >
-          🛒
-          {cartLength > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-              {cartLength}
-            </span>
-          )}
-        </button>
-
-        {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
           className="p-2 rounded-full z-999 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
@@ -80,7 +60,6 @@ export default function LandingPageNavBar({ toggleCart, cartLength, isCartOpen }
           {isDarkMode ? "🌙" : "☀️"}
         </button>
 
-        {/* Get Started Button */}
         <CallToActionButton />
       </div>
     </nav>

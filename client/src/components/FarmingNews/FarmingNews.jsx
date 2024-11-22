@@ -1,7 +1,3 @@
-import React from 'react';
-
-// Data arrays for each category, now including a link to each news item
-// Government Taxes
 const governmentTaxesData = [
     {
       title: "New Tax Policy for Farmers",
@@ -35,7 +31,6 @@ const governmentTaxesData = [
     }
   ];
   
-  // Farming News
   const farmingNewsData = [
     {
       title: "Sustainable Farming Practices",
@@ -69,7 +64,6 @@ const governmentTaxesData = [
     }
   ];
   
-  // Market Prices of Vegetables
   const marketPricesData = [
     {
       title: "Tomato Market Prices Rise",
@@ -128,8 +122,7 @@ const FarmingPage = () => {
   return (
     <div className="p-6 bg-gray-100 dark:bg-gray-900 min-h-screen">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">Farming News</h1>
-
-      {/* Render different sections */}
+      
       {renderSection("Government Taxes", governmentTaxesData)}
       {renderSection("Farming News", farmingNewsData)}
       {renderSection("Market Prices of Vegetables", marketPricesData)}
