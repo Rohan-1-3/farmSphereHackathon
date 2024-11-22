@@ -21,7 +21,7 @@ const LoginPage = () => {
       sessionStorage.setItem("user", JSON.stringify(data.user))
       setIsSignedIn(true)
       if (sessionStorage.getItem("userType") === "Farmer") {
-        navigate("/marketplace");
+        navigate("/farmermarketplace");
       } else {
         navigate("/marketplace");
       }
@@ -33,8 +33,8 @@ const LoginPage = () => {
   useEffect(()=>{
     if(sessionStorage.getItem("signedIn")){
       const user = JSON.parse(sessionStorage.getItem("user"));
-      if(user){
-        navigate("/marketplace")
+      if(user && user.isFarmer){
+        navigate("/farmermarketplace")
       }else{
         navigate("/marketplace")
       }

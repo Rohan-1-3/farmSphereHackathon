@@ -14,7 +14,7 @@ export default function App() {
   },[])
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
+    <div className="font-sans min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
       {/* Conditionally render the navbar */}
       {isSignedIn ? 
         <AppNavbar  setIsSignedIn={setIsSignedIn}/> : 

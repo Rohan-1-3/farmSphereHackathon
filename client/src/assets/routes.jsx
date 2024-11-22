@@ -12,6 +12,7 @@ import SoilTest from "../components/SoilTest/SoilTest";
 import Marketplace from "../components/Marketplace/Marketplace";
 import LoanApplicationForm from "../components/Loan/Loan";
 import FarmingNews from "../components/FarmingNews/FarmingNews";
+import ConsumerMarketplace from "../components/Marketplace/ConsumerMarketplace";
 
 const router = createBrowserRouter([
     {
@@ -57,7 +58,11 @@ const router = createBrowserRouter([
               },
               {
                 path: "/marketplace",
-                element: <Marketplace />,
+                element: <ConsumerMarketplace />,
+              },
+              {
+                path: "/farmermarketplace",
+                element: <Marketplace />
               },
               {
                 path: "/soil-testing",

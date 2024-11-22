@@ -1,54 +1,172 @@
-import React, { useEffect } from "react";
-import ItemCard from "./ItemCard";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 const Marketplace = () => {
-  const items = [
-    { id: 1, name: "Product 1", price: "$25", image: "https://via.placeholder.com/150" },
-    { id: 2, name: "Product 2", price: "$30", image: "https://via.placeholder.com/150" },
-    { id: 3, name: "Product 3", price: "$15", image: "https://via.placeholder.com/150" },
-    { id: 4, name: "Product 4", price: "$50", image: "https://via.placeholder.com/150" },
-    { id: 5, name: "Product 5", price: "$40", image: "https://via.placeholder.com/150" },
-    { id: 6, name: "Product 6", price: "$60", image: "https://via.placeholder.com/150" },
-    { id: 7, name: "Product 7", price: "$35", image: "https://via.placeholder.com/150" },
-    { id: 8, name: "Product 8", price: "$45", image: "https://via.placeholder.com/150" },
-    { id: 9, name: "Product 9", price: "$20", image: "https://via.placeholder.com/150" },
-    { id: 10, name: "Product 10", price: "$55", image: "https://via.placeholder.com/150" },
-    { id: 11, name: "Product 11", price: "$22", image: "https://via.placeholder.com/150" },
-    { id: 12, name: "Product 12", price: "$28", image: "https://via.placeholder.com/150" },
-    { id: 13, name: "Product 13", price: "$33", image: "https://via.placeholder.com/150" },
-    { id: 14, name: "Product 14", price: "$37", image: "https://via.placeholder.com/150" },
-    { id: 15, name: "Product 15", price: "$48", image: "https://via.placeholder.com/150" }
-];
+  const [goods, setGoods] = useState([]);
+  const [goodName, setGoodName] = useState('');
+  const [goodPrice, setGoodPrice] = useState('');
+  const [goodQuantity, setGoodQuantity] = useState('');
+  const [editingId, setEditingId] = useState(null);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const savedGoods = JSON.parse(localStorage.getItem('goods')) || [];
+    setGoods(savedGoods);
+  }, []);
 
-  useEffect(()=>{
-    if(!sessionStorage.getItem("signedIn")){
-      navigate("/user")
+  useEffect(() => {
+    localStorage.setItem('goods', JSON.stringify(goods));
+  }, [goods]);
+
+  const handleAddOrUpdateGood = () => {
+    if (!goodName || !goodPrice || !goodQuantity) {
+      alert('Please fill in all fields.');
+      return;
     }
-  },[])
+
+    if (editingId !== null) {
+      setGoods((prevGoods) =>
+        prevGoods.map((good) =>
+          good.id === editingId
+            ? {
+                ...good,
+                name: goodName,
+                price: parseFloat(goodPrice).toFixed(2),
+                quantity: parseInt(goodQuantity, 10),
+              }
+            : good
+        )
+      );
+      setEditingId(null);
+    } else {
+      const newGood = {
+        id: Date.now(),
+        name: goodName,
+        price: parseFloat(goodPrice).toFixed(2),
+        quantity: parseInt(goodQuantity, 10),
+      };
+      setGoods((prevGoods) => [...prevGoods, newGood]);
+    }
+
+    setGoodName('');
+    setGoodPrice('');
+    setGoodQuantity('');
+  };
+
+  const handleEditGood = (id) => {
+    const goodToEdit = goods.find((good) => good.id === id);
+    setGoodName(goodToEdit.name);
+    setGoodPrice(goodToEdit.price);
+    setGoodQuantity(goodToEdit.quantity);
+    setEditingId(id);
+  };
+
+  const handleDeleteGood = (id) => {
+    const updatedGoods = goods.filter((good) => good.id !== id);
+    setGoods(updatedGoods);
+  };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-black dark:bg-gray-900 dark:text-white">
-      {/* Header */}
-      <header className="bg-blue-600 text-white py-4 shadow-md dark:bg-blue-800 text-center">
-        <div className="flex justify-between items-center px-6">
-          <h1 className="text-2xl font-bold w-full">Marketplace</h1>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6 text-gray-800 dark:text-gray-100">
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <h1 className="text-4xl font-extrabold text-center mb-8">
+          Farmers' Marketplace
+        </h1>
+
+        {/* Form to Add or Edit Goods */}
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-8">
+          <h2 className="text-2xl font-semibold mb-4">
+            {editingId !== null ? 'Edit Good' : 'Add Good'}
+          </h2>
+          <div className="flex flex-wrap gap-4">
+            <input
+              type="text"
+              placeholder="Good Name"
+              className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              value={goodName}
+              onChange={(e) => setGoodName(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Price"
+              className="w-32 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              value={goodPrice}
+              onChange={(e) => setGoodPrice(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Quantity"
+              className="w-32 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+              value={goodQuantity}
+              onChange={(e) => setGoodQuantity(e.target.value)}
+            />
+            <button
+              className={`${
+                editingId !== null
+                  ? 'bg-green-500 hover:bg-green-600'
+                  : 'bg-blue-500 hover:bg-blue-600'
+              } text-white px-6 py-2 rounded-md transition`}
+              onClick={handleAddOrUpdateGood}
+            >
+              {editingId !== null ? 'Update Good' : 'Add Good'}
+            </button>
+          </div>
         </div>
-      </header>
-  
-      {/* Main Content */}
-      <main className="p-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {items.map((item) => (
-            <ItemCard key={item.id} item={item} />
-          ))}
+
+        {/* Goods List */}
+        <div>
+          <h2 className="text-2xl font-semibold mb-4">Available Goods</h2>
+          {goods.length === 0 ? (
+            <p className="text-gray-500 dark:text-gray-400">
+              No goods available. Add some to get started!
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {goods.map((good) => (
+                <div
+                  key={good.id}
+                  className="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-6 hover:shadow-2xl hover:scale-105 transform transition duration-300"
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-xl font-bold text-blue-700 dark:text-blue-300">
+                      {good.name}
+                    </h3>
+                  </div>
+                  <div className="mb-4">
+                    <p className="text-lg">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">
+                        Price:
+                      </span>{' '}
+                      ${good.price}
+                    </p>
+                    <p className="text-lg">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">
+                        Quantity:
+                      </span>{' '}
+                      {good.quantity}
+                    </p>
+                  </div>
+                  <div className="flex justify-between gap-2">
+                    <button
+                      className="flex-1 bg-yellow-500 dark:bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-600 dark:hover:bg-yellow-700 transition"
+                      onClick={() => handleEditGood(good.id)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="flex-1 bg-red-500 dark:bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-600 dark:hover:bg-red-700 transition"
+                      onClick={() => handleDeleteGood(good.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      </main>
+      </div>
     </div>
   );
-  
 };
 
 export default Marketplace;

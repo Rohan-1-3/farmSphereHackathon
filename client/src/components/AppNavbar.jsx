@@ -87,9 +87,9 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
         {/* Cart Button */}
         <button
           onClick={toggleCart}
-          className={`relative p-2 rounded-full ${
+          className={`relative p-2 bg-transparent rounded-full ${
             isCartOpen
-              ? "bg-blue-100 dark:bg-blue-800"
+              ? "bg-blue-100  dark:bg-blue-800"
               : "bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           }`}
           aria-label="Toggle Cart"
@@ -105,7 +105,7 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
         {/* Dark Mode Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+          className="p-2 rounded-full bg-transparent dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           aria-label="Toggle Dark Mode"
         >
           {isDarkMode ? "🌙" : "☀️"}
@@ -116,10 +116,10 @@ export default function AppNavbar({ toggleCart, cartLength, isCartOpen, setIsSig
             setIsSignedIn(false)
             navigate("/")
           }}
-          className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+          className="p-2 rounded-full bg-transparent dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
           aria-label="Toggle Dark Mode"
         >
-          =>
+          🚪
         </button>
       </div>
     </nav>
